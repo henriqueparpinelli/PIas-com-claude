@@ -1,0 +1,8 @@
+{
+  "name": "hmdf-esports",
+  "version": "2.0.0",
+  "description": "HMDF esports - Sistema de Gestão de Atletas e Treinadores",
+  "main": "servidor.js",
+  "scripts": { "start": "node servidor.js" },
+  "dependencies": { "sqlite3": "^5.1.7" }
+}

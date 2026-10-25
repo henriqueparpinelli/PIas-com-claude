@@ -1,0 +1,321 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f0f3f5; /* Cinza claro limpo */
+  color: #1e272e;
+  padding: 0 0 40px 0;
+}
+
+.containerPrincipal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* HEADER DO CLUBE / ESCOLA */
+.topoEsportivo {
+  background-color: #0f172a; /* Azul Marinho Atlético Escuro - Discreto */
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  border-bottom: 4px solid #ccff00; /* Amarelo Neon Esportivo - Detalhe marcante */
+}
+
+.topoEsportivo .logo {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.topoEsportivo .logo span {
+  color: #ccff00; /* Destaque na logo */
+}
+
+.topoEsportivo p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 {
+  display: none; /* Ocultado pois o cabeçalho já faz o papel de título principal */
+}
+
+.subtituloEsportivo {
+  color: #0f172a;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+}
+
+/* Pequeno bloco de cor ao lado dos títulos da tabela */
+.subtituloEsportivo span {
+  display: inline-block;
+  width: 6px;
+  height: 24px;
+  background-color: #ccff00;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+/* SISTEMA DE NAVEGAÇÃO DE ABAS */
+.AbasContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.AbasContainer input[type="radio"] {
+  display: none;
+}
+
+.abaBotao {
+  padding: 14px 28px;
+  background-color: #e2e8f0;
+  color: #475569;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 6px 6px 0 0;
+  margin-right: 6px;
+  transition: all 0.2s ease;
+  border: 1px solid #cbd5e1;
+  border-bottom: none;
+}
+
+.abaBotao:hover {
+  background-color: #cbd5e1;
+}
+
+.abaConteudo {
+  width: 100%;
+  padding: 25px 0;
+  display: none;
+  order: 1;
+}
+
+/* Ativação das Abas com cores do clube */
+#tabAluno:checked ~ #conteudoAluno,
+#tabTreinador:checked ~ #conteudoTreinador,
+#tabModalidade:checked ~ #conteudoModalidade,
+#tabMatricula:checked ~ #conteudoMatricula,
+#tabProntuario:checked ~ #conteudoProntuario {
+  display: block;
+}
+
+#tabAluno:checked + .abaBotao,
+#tabTreinador:checked + .abaBotao,
+#tabModalidade:checked + .abaBotao,
+#tabMatricula:checked + .abaBotao,
+#tabProntuario:checked + .abaBotao {
+  background-color: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+}
+
+/* LAYOUT FORMULÁRIOS LADO A LADO */
+.painelDuplo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.painelDuplo form:nth-child(1) {
+  flex: 2 1 650px;
+}
+
+.painelDuplo form:nth-child(2) {
+  flex: 1 1 320px;
+}
+
+/* CARDS E CAMPOS */
+fieldset {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  height: 100%;
+}
+
+legend {
+  font-weight: 800;
+  font-size: 15px;
+  padding: 0 12px;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.linha, .linhaVertical {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.linha { flex-wrap: wrap; }
+.linhaVertical { flex-direction: column; }
+
+label {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 180px;
+}
+
+label span {
+  font-size: 13px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+input, select {
+  padding: 11px 14px;
+  border: 2px solid #e2e8f0; /* Borda levemente mais grossa para parecer atlético */
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  color: #0f172a;
+  background-color: #f8fafc;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: #0f172a;
+  background-color: #fff;
+  outline: none;
+}
+
+/* BOTÕES DE AÇÃO ESPORTIVOS */
+button {
+  color: #0f172a;
+  border: none;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+/* Botões com contraste alto no neon, mas letras pretas para ser legível e elegante */
+.btnSucesso {
+  background-color: #ccff00; 
+}
+
+.btnSucesso:hover {
+  background-color: #b5e600;
+  box-shadow: 0 4px 12px rgba(204, 255, 0, 0.3);
+}
+
+.btnPrimario {
+  background-color: #00f2fe; /* Azul ciano energético */
+}
+
+.btnPrimario:hover {
+  background-color: #00d2db;
+  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.3);
+}
+
+/* FEEDBACKS */
+.avisoFeedback {
+  margin-top: 12px;
+  font-weight: bold;
+  text-align: center;
+  height: 20px;
+  font-size: 14px;
+}
+
+/* TABELAS MODERNAS DE ATLETAS */
+.tabelaResponsiva {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 10px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #0f172a;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+
+/* ===== ACRESCENTADO ===== */
+
+/* Faz o atributo hidden funcionar também nos botões */
+[hidden] { display: none !important; }
+
+.dica {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.avisoFeedback.ok   { color: #15803d; }
+.avisoFeedback.erro { color: #b91c1c; height: auto; min-height: 20px; }
+
+.btnSecundario { background-color: #e2e8f0; }
+.btnSecundario:hover { background-color: #cbd5e1; }
+
+/* Botões pequenos das tabelas */
+.mini {
+  width: auto;
+  margin: 0 6px 0 0;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.fraco  { background-color: #e2e8f0; }
+.fraco:hover { background-color: #cbd5e1; }
+
+.perigo { background-color: #fecaca; color: #7f1d1d; }
+.perigo:hover { background-color: #fca5a5; }
+
+td.acoes { white-space: nowrap; }
+td.vazio { text-align: center; color: #64748b; padding: 28px; }

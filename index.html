@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HMDF esports - Painel de Controle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Topo Temático HMDF esports -->
+  <header class="topoEsportivo">
+    <div class="logo">HMDF <span>esports</span></div>
+    <p>Sistema de Gestão de Atletas e Treinadores</p>
+  </header>
+
+  <main class="containerPrincipal">
+    <!-- Sistema de Abas (Tabs) -->
+    <div class="AbasContainer">
+      <input type="radio" id="tabAluno" name="abas" checked>
+      <label for="tabAluno" class="abaBotao">🏅 Área do Aluno</label>
+
+      <input type="radio" id="tabTreinador" name="abas">
+      <label for="tabTreinador" class="abaBotao">📋 Área do Treinador</label>
+
+      <input type="radio" id="tabModalidade" name="abas">
+      <label for="tabModalidade" class="abaBotao">🏀 Modalidades</label>
+
+      <input type="radio" id="tabMatricula" name="abas">
+      <label for="tabMatricula" class="abaBotao">📝 Matrículas</label>
+
+      <input type="radio" id="tabProntuario" name="abas">
+      <label for="tabProntuario" class="abaBotao">🩺 Prontuário</label>
+
+      <!-- ================= CONTEÚDO: ALUNO ================= -->
+      <div class="abaConteudo" id="conteudoAluno">
+        <div class="painelDuplo">
+
+          <!-- Formulário de Cadastro - Aluno -->
+          <form id="formCadastroAluno">
+            <fieldset>
+              <legend>Ficha de Cadastro: Novo Atleta</legend>
+              <input type="hidden" name="AlunoId">
+              <div class="linha">
+                <label>
+                  <span>Nome Completo</span>
+                  <input name="Nome" required placeholder="Wagner Silva">
+                </label>
+                <label style="flex: 3 1 300px;">
+                  <span>CPF</span>
+                  <input name="CPF" required placeholder="000.000.000-00" maxlength="14" oninput="aplicarMascaraCPF(this)">
+                </label>
+                <label style="flex: 2 1 200px;">
+                  <span>E-mail Corporativo ou Pessoal</span>
+                  <input type="email" name="Gmail" required placeholder="exemplo@gmail.com">
+                </label>
+              </div>
+              <div class="linha">
+                <label>
+                  <span>Cidade</span>
+                  <input name="Cidade" required placeholder="Foz do Iguaçu">
+                </label>
+                <label>
+                  <span>Telefone de Contato</span>
+                  <input name="Telefone" required placeholder="(00) 00000-0000" maxlength="15" oninput="aplicarMascaraTelefone(this)">
+                </label>
+                <label style="flex: 3 1 240px;">
+                  <span>CEP</span>
+                  <input name="CEP" required placeholder="00000-000" maxlength="9" oninput="aplicarMascaraCEP(this)">
+                </label>
+              </div>
+              <p class="dica">O ID de matrícula é criado automaticamente pelo banco de dados.</p>
+              <button type="submit" id="botaoSalvarAluno" class="btnSucesso">Matricular Atleta</button>
+              <button type="button" id="botaoCancelarAluno" class="btnSecundario" hidden>Cancelar edição</button>
+              <p id="avisoCadastroAluno" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+          <!-- Formulário de Login - Aluno -->
+          <form id="formLoginAluno">
+            <fieldset>
+              <legend>Portal do Aluno</legend>
+              <div class="linhaVertical">
+                <label>
+                  <span>CPF Cadastrado</span>
+                  <input name="LoginCPF" required placeholder="000.000.000-00" maxlength="14" oninput="aplicarMascaraCPF(this)">
+                </label>
+                <label>
+                  <span>Senha (ID Matrícula)</span>
+                  <input type="password" name="LoginID" required placeholder="***">
+                </label>
+              </div>
+              <button type="submit" class="btnPrimario">Acessar Painel</button>
+              <p id="avisoLoginAluno" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <h2 class="subtituloEsportivo"><span></span> Alunos Matriculados</h2>
+        <div class="tabelaResponsiva">
+          <table id="tabelaAlunos">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Cidade</th>
+                <th>Telefone</th>
+                <th>CEP</th>
+                <th>ID</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabelaAlunos"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= CONTEÚDO: TREINADOR ================= -->
+      <div class="abaConteudo" id="conteudoTreinador">
+        <div class="painelDuplo">
+
+          <!-- Formulário de Cadastro - Treinador -->
+          <form id="formCadastroTreinador">
+            <fieldset>
+              <legend>Ficha de Cadastro: Novo Treinador</legend>
+              <input type="hidden" name="TreinadorId">
+              <div class="linha">
+                <label>
+                  <span>Nome Completo</span>
+                  <input name="Nome" required placeholder="Carlos Silva">
+                </label>
+                <label style="flex: 2 1 200px;">
+                  <span>Registro Profissional (CREF)</span>
+                  <input name="CREF" required placeholder="000000-G/UF" maxlength="11">
+                </label>
+                <label style="flex: 2 1 200px;">
+                  <span>E-mail Profissional</span>
+                  <input type="email" name="Email" required placeholder="treinador@hmdfesports.com">
+                </label>
+              </div>
+              <div class="linha">
+                <label style="flex: 2 1 200px;">
+                  <span>Modalidade Principal</span>
+                  <input name="Especialidade" required placeholder="Futebol, Natação, Basquete...">
+                </label>
+                <label>
+                  <span>Telefone Corporativo</span>
+                  <input name="Telefone" required placeholder="(00) 00000-0000" maxlength="15" oninput="aplicarMascaraTelefone(this)">
+                </label>
+                <label>
+                  <span>Senha de Acesso</span>
+                  <input type="password" name="Senha" required minlength="6" placeholder="mínimo 6 caracteres">
+                </label>
+              </div>
+              <button type="submit" id="botaoSalvarTreinador" class="btnSucesso">Cadastrar Treinador</button>
+              <button type="button" id="botaoCancelarTreinador" class="btnSecundario" hidden>Cancelar edição</button>
+              <p id="avisoCadastroTreinador" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+          <!-- Formulário de Login - Treinador -->
+          <form id="formLoginTreinador">
+            <fieldset>
+              <legend>Portal do Treinador</legend>
+              <div class="linhaVertical">
+                <label>
+                  <span>E-mail Técnico</span>
+                  <input type="email" name="LoginEmail" required placeholder="treinador@hmdfesports.com">
+                </label>
+                <label>
+                  <span>Senha de Acesso</span>
+                  <input type="password" name="LoginSenha" required placeholder="******">
+                </label>
+              </div>
+              <button type="submit" class="btnPrimario">Acessar Área Técnica</button>
+              <p id="avisoLoginTreinador" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <h2 class="subtituloEsportivo"><span></span> Corpo Técnico de Treinadores</h2>
+        <div class="tabelaResponsiva">
+          <table id="tabelaTreinadores">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CREF</th>
+                <th>E-mail</th>
+                <th>Modalidade</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabelaTreinadores"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= CONTEÚDO: MODALIDADES ================= -->
+      <div class="abaConteudo" id="conteudoModalidade">
+        <div class="painelDuplo">
+
+          <form id="formModalidade">
+            <fieldset>
+              <legend>Cadastro de Modalidade</legend>
+              <input type="hidden" name="ModalidadeId">
+              <div class="linha">
+                <label>
+                  <span>Esporte</span>
+                  <input name="Esporte" required placeholder="Basquete">
+                </label>
+                <label>
+                  <span>Turno</span>
+                  <select name="Turno" required>
+                    <option value="">-- escolha o turno --</option>
+                    <option value="manhã">manhã</option>
+                    <option value="tarde">tarde</option>
+                    <option value="noite">noite</option>
+                  </select>
+                </label>
+              </div>
+              <div class="linha">
+                <label>
+                  <span>Turma</span>
+                  <input name="Turma" required placeholder="2A">
+                </label>
+                <label>
+                  <span>Dia da Semana</span>
+                  <select name="Agenda" required>
+                    <option value="">-- escolha o dia --</option>
+                    <option value="segunda-feira">segunda-feira</option>
+                    <option value="terça-feira">terça-feira</option>
+                    <option value="quarta-feira">quarta-feira</option>
+                    <option value="quinta-feira">quinta-feira</option>
+                    <option value="sexta-feira">sexta-feira</option>
+                    <option value="sábado">sábado</option>
+                  </select>
+                </label>
+              </div>
+              <button type="submit" id="botaoSalvarModalidade" class="btnSucesso">Cadastrar Modalidade</button>
+              <button type="button" id="botaoCancelarModalidade" class="btnSecundario" hidden>Cancelar edição</button>
+              <p id="avisoModalidade" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <h2 class="subtituloEsportivo"><span></span> Modalidades Oferecidas</h2>
+        <div class="tabelaResponsiva">
+          <table id="tabelaModalidades">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Esporte</th>
+                <th>Turno</th>
+                <th>Turma</th>
+                <th>Dia</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabelaModalidades"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= CONTEÚDO: MATRÍCULAS ================= -->
+      <div class="abaConteudo" id="conteudoMatricula">
+        <div class="painelDuplo">
+
+          <form id="formMatricula">
+            <fieldset>
+              <legend>Matrícula em Modalidade</legend>
+              <div class="linha">
+                <label>
+                  <span>Atleta</span>
+                  <select name="AlunoId" required></select>
+                </label>
+                <label>
+                  <span>Modalidade</span>
+                  <select name="ModalidadeId" required></select>
+                </label>
+              </div>
+              <button type="submit" class="btnSucesso">Matricular</button>
+              <p id="avisoMatricula" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <h2 class="subtituloEsportivo"><span></span> Atletas por Modalidade</h2>
+        <div class="tabelaResponsiva">
+          <table id="tabelaMatriculas">
+            <thead>
+              <tr>
+                <th>Esporte</th>
+                <th>Turno</th>
+                <th>Atleta</th>
+                <th>CPF</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabelaMatriculas"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= CONTEÚDO: PRONTUÁRIO ================= -->
+      <div class="abaConteudo" id="conteudoProntuario">
+        <div class="painelDuplo">
+
+          <form id="formProntuario">
+            <fieldset>
+              <legend>Prontuário</legend>
+              <input type="hidden" name="ProntuarioId">
+              <div class="linha">
+                <label>
+                  <span>AVM</span>
+                  <input name="AVM" required placeholder="em dia">
+                </label>
+                <label>
+                  <span>AM</span>
+                  <input name="AM" required placeholder="aprovada">
+                </label>
+              </div>
+              <button type="submit" id="botaoSalvarProntuario" class="btnSucesso">Cadastrar Prontuário</button>
+              <button type="button" id="botaoCancelarProntuario" class="btnSecundario" hidden>Cancelar edição</button>
+              <p id="avisoProntuario" class="avisoFeedback"></p>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <h2 class="subtituloEsportivo"><span></span> Prontuários</h2>
+        <div class="tabelaResponsiva">
+          <table id="tabelaProntuarios">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>AVM</th>
+                <th>AM</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabelaProntuarios"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

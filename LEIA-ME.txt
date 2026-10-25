@@ -1,0 +1,27 @@
+HMDF esports - Sistema de Gestão de Atletas e Treinadores
+===========================================================
+
+COMO RODAR
+  1. Instale o Node.js (nodejs.org)
+  2. Abra o terminal NESTA pasta (a que tem o servidor.js)
+  3. npm install
+  4. node servidor.js
+  5. No navegador, digite:  http://localhost:3000
+     (não abra o index.html com dois cliques)
+
+DADOS DE TESTE
+  Aluno:      CPF 123.456.789-09     ID 1
+  Treinador:  jair@hmdfesports.com   senha 123456
+
+OS ARQUIVOS
+  banco.js       as tabelas (SQL). O id de todas é AUTOINCREMENT.
+  servidor.js    recebe os pedidos da tela, usa o banco e responde em JSON
+  seguranca.js   embaralha a senha do treinador
+  dados.json     cópia de tudo que está no banco (o servidor atualiza sozinho)
+  public/        index.html, style.css e script.js (a parte do navegador)
+
+AS TABELAS
+  aluno, treinador, modalidade, prontuario
+  alunomodalidade  (liga o aluno à modalidade)
+
+SE MEXER NO banco.js: apague o arquivo banco.db e rode de novo.
